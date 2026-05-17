@@ -44,15 +44,26 @@ async function agendar(req, res, next) {
 
 async function listar(req, res, next) {
   try {
-    const campo = req.usuario.perfil_id === 2 ? "c.psicologo_id" : "c.paciente_id";
+    let filtro = "WHERE c.paciente_id = :usuario_id";
+    const params = { usuario_id: req.usuario.id_usuario };
+
+    if (req.usuario.perfil_id === 1) {
+      filtro = "";
+      delete params.usuario_id;
+    }
+
+    if (req.usuario.perfil_id === 2) {
+      filtro = "WHERE c.psicologo_id = :usuario_id";
+    }
+
     const consultas = await query(
       `SELECT c.*, p.nome AS paciente_nome, ps.nome AS psicologo_nome
        FROM consulta c
        INNER JOIN usuario p ON p.id_usuario = c.paciente_id
        INNER JOIN usuario ps ON ps.id_usuario = c.psicologo_id
-       WHERE ${campo} = :usuario_id
+       ${filtro}
        ORDER BY c.data_consulta DESC, c.horario DESC`,
-      { usuario_id: req.usuario.id_usuario }
+      params
     );
 
     return res.json(consultas);
@@ -101,4 +112,3 @@ async function confirmar(req, res, next) {
 }
 
 module.exports = { agendar, listar, cancelar, confirmar };
-

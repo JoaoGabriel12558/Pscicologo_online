@@ -1,80 +1,309 @@
-# Plataforma de Atendimento Psicologico Online
+# Portal Terapia - Plataforma de Atendimento Psicológico Online
 
-Projeto Integrador para uma plataforma web de atendimento psicologico online, com documentacao final, diagramas, prototipo web e backend API em Node.js.
+Projeto Integrador desenvolvido como uma Prova de Conceito (PoC) para uma plataforma web de atendimento psicológico online. A solução conecta pacientes e psicólogos em um ambiente simples, organizado e responsivo, com cadastro, autenticação, agenda de consultas, disponibilidade de profissionais e troca de mensagens.
 
-## Estrutura
+## Visão Geral
+
+O Portal Terapia foi pensado para facilitar o acesso ao atendimento psicológico remoto. Pacientes podem encontrar profissionais, realizar cadastro, fazer login e agendar consultas. Psicólogos podem acompanhar seus atendimentos e gerenciar sua disponibilidade. Administradores têm uma visão mais ampla da operação da plataforma.
+
+O projeto está dividido em duas partes principais:
+
+- **Frontend:** site web navegável feito com HTML, CSS e JavaScript.
+- **Backend:** API REST em Node.js, Express e MySQL, com autenticação JWT e senhas criptografadas.
+
+## Funcionalidades
+
+- Cadastro de pacientes, psicólogos e administradores.
+- Login com e-mail e senha.
+- Autenticação com JWT.
+- Armazenamento seguro de senhas com bcryptjs.
+- Listagem de psicólogos cadastrados.
+- Indicadores dinâmicos de profissionais, pacientes e especialidades.
+- Agendamento de consultas.
+- Visualização de consultas por perfil:
+  - paciente visualiza apenas seus próprios agendamentos;
+  - psicólogo visualiza apenas suas consultas;
+  - administrador visualiza a agenda geral.
+- Cancelamento e confirmação de consultas.
+- Cadastro de disponibilidade do psicólogo.
+- Troca de mensagens entre usuários.
+- Interface responsiva para desktop e dispositivos móveis.
+
+## Tecnologias Utilizadas
+
+### Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+### Backend
+
+- Node.js
+- Express
+- MySQL
+- JWT
+- bcryptjs
+- CORS
+- dotenv
+
+### Ferramentas
+
+- Git e GitHub
+- MySQL Workbench
+- Visual Studio Code
+- Figma como referência visual
+
+## Estrutura do Projeto
 
 ```text
 atendimento pscicologico/
-├── backend/              # API REST Node.js + Express + MySQL
-├── web/                  # Site/prototipo navegavel
-├── docs/                 # Documento final em HTML/PDF e imagens
-└── entrega/originais/    # Arquivos originais usados como base
+├── backend/              # API REST com Node.js, Express e MySQL
+│   ├── scripts/          # Scripts SQL e configuração inicial do banco
+│   └── src/              # Código-fonte da API
+├── web/                  # Site frontend do Portal Terapia
+│   └── assets/           # Imagens e recursos visuais
+├── docs/                 # Documentação final e arquivos de apoio
+├── scripts/              # Scripts auxiliares do projeto
+├── entrega/              # Arquivos originais usados como base da entrega
+├── .gitignore
+└── README.md
 ```
 
-## Como abrir o site
+## Como Usar o Projeto
 
-Abra o arquivo:
+O projeto pode ser usado de duas formas:
+
+- **Localmente, para desenvolvimento e apresentação técnica:** o frontend, a API e o MySQL rodam no computador.
+- **Publicado na web, para acesso como um site comum:** o frontend fica hospedado online, a API fica em um servidor Node.js e o banco MySQL fica em nuvem.
+
+O GitHub é usado para versionar e publicar o código. Para o sistema funcionar online com dados reais, também é necessário hospedar a API e o banco de dados.
+
+## Executar Localmente
+
+### Frontend
+
+O frontend pode ser aberto diretamente no navegador:
 
 ```text
 web/index.html
 ```
 
-O prototipo funciona no navegador sem servidor e simula login, cadastro, agendamento, agenda e mensagens com `localStorage`.
+Para usar os dados reais do banco, mantenha o backend rodando em:
 
-## Como rodar o backend
+```text
+http://localhost:3000
+```
+
+Quando a API está disponível, o site busca estatísticas, usuários e consultas no MySQL. Caso a API esteja desligada, o frontend ainda funciona como protótipo navegável usando dados locais de demonstração.
+
+### Backend
+
+Entre na pasta do backend:
 
 ```bash
 cd backend
+```
+
+Instale as dependências:
+
+```bash
 npm install
+```
+
+Crie o arquivo de ambiente a partir do exemplo:
+
+```bash
 copy .env.example .env
+```
+
+Configure o arquivo `backend/.env` com os dados do seu MySQL:
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=sua_senha_aqui
+DB_NAME=atendimento_psicologico
+
+JWT_SECRET=seu_segredo_jwt_muito_seguro_aqui
+JWT_EXPIRES_IN=7d
+
+PORT=3000
+NODE_ENV=development
+```
+
+Crie o banco e as tabelas:
+
+```bash
 npm run db:setup
+```
+
+Inicie a API:
+
+```bash
 npm run dev
 ```
 
-Servidor padrao: `http://localhost:3000`
-
-## Banco de dados local
-
-O backend usa MySQL. Depois de configurar o arquivo `backend/.env`, rode:
+Ou, sem o nodemon:
 
 ```bash
-cd backend
-npm run db:setup
-node src/index.js
+npm start
 ```
 
-Endpoints principais:
+Servidor padrão:
 
-- `GET http://localhost:3000/api/estatisticas`
-- `POST http://localhost:3000/api/auth/registro`
-- `POST http://localhost:3000/api/auth/login`
-- `GET http://localhost:3000/api/consultas`
+```text
+http://localhost:3000
+```
 
-Contas de teste criadas no banco local:
+## Publicação na Web
+
+Para deixar o Portal Terapia disponível como um site comum, a arquitetura recomendada é:
+
+```text
+GitHub
+├── Repositório com o código-fonte
+
+Frontend
+├── GitHub Pages, Vercel ou Netlify
+
+Backend
+├── Render, Railway, Fly.io ou outro serviço Node.js
+
+Banco de dados
+└── MySQL em nuvem, como Railway, Aiven, PlanetScale ou Clever Cloud
+```
+
+Fluxo de publicação:
+
+1. Subir o código para o GitHub.
+2. Publicar a pasta `web/` em um serviço de frontend.
+3. Publicar a pasta `backend/` em um serviço que execute Node.js.
+4. Criar um banco MySQL em nuvem.
+5. Configurar as variáveis de ambiente da API no painel da hospedagem.
+6. Atualizar o endereço da API no frontend, se necessário.
+
+Com isso, o usuário acessa o site pelo navegador e os dados passam a ser salvos no banco online.
+
+## Banco de Dados
+
+O projeto usa banco de dados relacional MySQL.
+
+Principais entidades:
+
+- `perfil`
+- `usuario`
+- `disponibilidade`
+- `consulta`
+- `mensagem`
+
+O script de criação fica em:
+
+```text
+backend/scripts/database.sql
+```
+
+## Endpoints Principais
+
+Todas as rotas da API usam o prefixo `/api`.
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/api/estatisticas` | Retorna total de profissionais, pacientes e especialidades |
+| `POST` | `/api/auth/registro` | Cadastra usuário |
+| `POST` | `/api/auth/login` | Realiza login |
+| `GET` | `/api/usuarios/psicologos` | Lista psicólogos cadastrados |
+| `GET` | `/api/usuarios/perfil` | Retorna perfil do usuário autenticado |
+| `PUT` | `/api/usuarios/perfil` | Atualiza perfil |
+| `GET` | `/api/disponibilidades/:psicologoId` | Lista disponibilidade de um psicólogo |
+| `POST` | `/api/disponibilidades` | Cadastra disponibilidade |
+| `POST` | `/api/consultas` | Agenda uma consulta |
+| `GET` | `/api/consultas` | Lista consultas do usuário autenticado |
+| `PATCH` | `/api/consultas/:id/cancelar` | Cancela uma consulta |
+| `PATCH` | `/api/consultas/:id/confirmar` | Confirma uma consulta |
+| `GET` | `/api/mensagens` | Lista conversas |
+| `POST` | `/api/mensagens` | Envia mensagem |
+
+Rotas protegidas exigem token JWT no cabeçalho:
+
+```text
+Authorization: Bearer SEU_TOKEN
+```
+
+## Contas de Teste
+
+Após configurar o banco com os dados de exemplo, é possível testar os perfis abaixo:
 
 | Perfil | E-mail | Senha |
 |---|---|---|
 | Paciente | `ana@email.com` | `123456` |
-| Psicologo | `marina@portalterapia.com` | `123456` |
-| Psicologo | `rafael@portalterapia.com` | `123456` |
-| Psicologo | `beatriz@portalterapia.com` | `123456` |
+| Psicóloga | `marina@portalterapia.com` | `123456` |
+| Psicólogo | `rafael@portalterapia.com` | `123456` |
+| Psicóloga | `beatriz@portalterapia.com` | `123456` |
 | Administrador | `admin@portalterapia.com` | `123456` |
 
-O arquivo `backend/.env` nao deve ser enviado ao GitHub.
+## Requisitos do Projeto
 
-## Entrega final
+### Requisitos Funcionais
 
-O documento principal fica em:
+- Cadastro de pacientes e psicólogos.
+- Login e logout de usuários.
+- Atualização de perfil.
+- Definição de horários disponíveis.
+- Listagem de psicólogos.
+- Agendamento, visualização, confirmação e cancelamento de consultas.
+- Troca de mensagens entre usuários.
+
+### Requisitos Não Funcionais
+
+- Interface responsiva.
+- Senhas criptografadas.
+- Autenticação com JWT.
+- Banco de dados MySQL.
+- Compatibilidade com navegadores modernos.
+- Código versionado com Git.
+
+## Documento Final
+
+A documentação final do Projeto Integrador fica na pasta:
 
 ```text
-docs/projeto-final.html
-docs/projeto-final.pdf
+docs/
 ```
 
-## Tecnologias
+Essa pasta concentra os materiais de entrega, diagramas e arquivos de apoio usados para a versão final em PDF.
 
-- HTML5, CSS3 e JavaScript
-- Node.js, Express, JWT e bcryptjs
-- MySQL
-- Git e GitHub
+## Segurança
+
+O arquivo `backend/.env` contém dados sensíveis e não deve ser enviado para o GitHub. O repositório inclui apenas o modelo:
+
+```text
+backend/.env.example
+```
+
+## Status da PoC
+
+A Prova de Conceito contempla as principais funcionalidades propostas:
+
+- cadastro e autenticação;
+- integração com MySQL;
+- agenda de consultas;
+- perfis de paciente, psicólogo e administrador;
+- disponibilidade dos profissionais;
+- estatísticas reais carregadas do banco;
+- protótipo web alinhado ao layout visual do Portal Terapia.
+
+## Próximas Melhorias
+
+- Publicar o frontend em uma plataforma web.
+- Hospedar a API em ambiente online.
+- Usar um banco MySQL em nuvem.
+- Implementar videochamada.
+- Adicionar recuperação de senha.
+- Criar painel administrativo completo.
+- Adicionar testes automatizados.
+
+## Autor
+
+Projeto desenvolvido para o Projeto Integrador do curso de Desenvolvimento de Sistemas Orientado a Dispositivos Móveis e Baseados na Web.

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atendimento Psicológico Online</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+  <header class="topbar">
+  <a class="brand" href="#inicio" aria-label="Atendimento Psicológico Online">
+    <span class="brand-mark">PT</span>
+    <span>Portal Terapia</span>
+  </a>
+
+  <nav class="nav" aria-label="Navegação principal">
+    <a href="#como_funciona">Como Funciona</a>
+    <a href="#quem_somos">Quem Somos</a>
+    <a href="#nosso_time">Nosso Time</a>
+    <a href="#loginForm">Entrar</a>
+  </nav>
+
+  <div id="authArea" class="auth-buttons">
+    <a class="secondary-button compact-button" href="#loginForm">Login</a>
+    <a class="primary-button compact-button" href="#registerForm">Cadastre-se</a>
+  </div>
+</header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-content">
+          <p class="eyebrow">100% online</p>
+          <h1>Sua plataforma de psicologia online</h1>
+          <p class="hero-copy">
+            Plataforma simples e prática para você cuidar da sua saúde mental, encontrar
+            profissionais qualificados e agendar consultas com segurança.
+          </p>
+          <div class="hero-actions">
+            <a class="secondary-button" href="#loginForm">Login</a>
+            <a class="primary-button" href="#registerForm">Cadastre-se</a>
+            <a class="primary-button" id="heroScheduleButton" href="#loginForm">Entrar para agendar</a>
+          </div>
+        </div>
+        <div class="hero-collage" aria-label="Imagens simbólicas sobre psicologia online">
+          <img class="collage-main" src="assets/layout/psicologia-online.png" alt="Ambiente simbólico de psicologia online">
+          <img class="collage-float top" src="assets/layout/agenda-terapia.png" alt="Agenda e materiais de terapia online">
+          <img class="collage-float bottom" src="assets/layout/mente-equilibrio.png" alt="Bem-estar mental e equilíbrio emocional">
+        </div>
+      </section>
+
+      <section class="stats-band" aria-label="Resumo do protótipo">
+        <div>
+          <strong id="professionalsCount">--</strong>
+          <span>profissionais cadastrados</span>
+        </div>
+        <div>
+          <strong id="patientsCount">--</strong>
+          <span>pacientes</span>
+        </div>
+        <div>
+          <strong id="specialtiesCount">--</strong>
+          <span>especialidades</span>
+        </div>
+        <div>
+          <strong>100%</strong>
+          <span>atendimento online</span>
+        </div>
+      </section>
+
+      <section class="content-section how-section" id="como_funciona">
+        <div class="section-heading">
+          <p class="eyebrow">Como Funciona</p>
+          <h2>Atendimento online em poucos passos</h2>
+        </div>
+        <div class="how-grid">
+          <article>
+            <strong>1</strong>
+            <h3>Crie sua conta</h3>
+            <p>Faça login ou cadastre-se como paciente para acessar os recursos da plataforma.</p>
+          </article>
+          <article>
+            <strong>2</strong>
+            <h3>Escolha um profissional</h3>
+            <p>Conheça o time de psicólogos, especialidades e horários disponíveis.</p>
+          </article>
+          <article>
+            <strong>3</strong>
+            <h3>Agende a consulta</h3>
+            <p>Selecione data e horário para organizar seu atendimento psicológico online.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="access-layout" id="login">
+        <form class="form-panel" id="loginForm">
+          <div class="section-heading">
+            <p class="eyebrow">Acesso</p>
+            <h2>Login</h2>
+          </div>
+          <label>
+            E-mail
+            <input name="email" type="email" required>
+          </label>
+          <label>
+            Senha
+            <input name="senha" type="password" required>
+          </label>
+          <button class="primary-button full" type="submit">Entrar</button>
+          <p class="form-message" id="loginMessage"></p>
+        </form>
+
+        <form class="form-panel" id="registerForm">
+          <div class="section-heading">
+            <p class="eyebrow">Novo usuário</p>
+            <h2>Cadastro</h2>
+          </div>
+          <div class="field-grid">
+            <label>
+              Nome
+              <input name="nome" type="text" required>
+            </label>
+            <label>
+              Perfil
+              <select name="perfil" id="profileSelect">
+                <option value="Paciente">Paciente</option>
+                <option value="Psicólogo">Psicólogo</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+            </label>
+          </div>
+          <div class="field-grid">
+            <label>
+              E-mail
+              <input name="email" type="email" required>
+            </label>
+            <label>
+              Telefone
+              <input name="telefone" type="tel">
+            </label>
+          </div>
+          <div class="field-grid">
+            <label>
+              Data de nascimento
+              <input name="dataNascimento" type="date" required>
+            </label>
+            <label>
+              Senha
+              <input name="senha" type="password" minlength="6" required>
+            </label>
+          </div>
+          <label>
+            Confirmar senha
+            <input name="confirmarSenha" type="password" minlength="6" required>
+          </label>
+          <div class="professional-fields" id="professionalFields" hidden>
+            <div class="field-grid">
+              <label>
+                CRP
+                <input name="crp" type="text" placeholder="Ex.: CRP 06/123456">
+              </label>
+              <label>
+                Especialidade
+                <input name="especialidade" type="text" placeholder="Ex.: Terapia Cognitivo-Comportamental">
+              </label>
+            </div>
+            <label>
+              Documento de identificação profissional
+              <input name="documentoProfissional" type="text" placeholder="Número do registro ou documento institucional">
+            </label>
+          </div>
+          <button class="secondary-button full" type="submit">Criar cadastro</button>
+          <p class="form-message" id="registerMessage"></p>
+        </form>
+      </section>
+
+      <section class="content-section" id="nosso_time">
+        <div class="section-heading">
+          <p class="eyebrow">Nosso Time</p>
+          <h2>Profissionais qualificados prontos para ajudar</h2>
+        </div>
+        <div class="toolbar">
+          <input id="searchInput" type="search" placeholder="Buscar por nome ou especialidade">
+          <select id="specialtyFilter" aria-label="Filtrar por especialidade">
+            <option value="">Todas as especialidades</option>
+            <option value="Terapia Cognitivo-Comportamental">Terapia Cognitivo-Comportamental</option>
+            <option value="Ansiedade e Estresse">Ansiedade e Estresse</option>
+            <option value="Psicologia Clínica">Psicologia Clínica</option>
+          </select>
+        </div>
+        <div class="psychologist-grid" id="psychologistGrid"></div>
+      </section>
+
+      <section class="content-section split" id="agendamento">
+        <form class="form-panel" id="scheduleForm">
+          <div class="section-heading">
+            <p class="eyebrow">Paciente</p>
+            <h2>Agendar consulta</h2>
+          </div>
+          <label>
+            Psicólogo
+            <select name="psicologo" id="schedulePsychologist"></select>
+          </label>
+          <div class="field-grid">
+            <label>
+              Data
+              <input name="data" type="date" required>
+            </label>
+            <label>
+              Horário
+              <select name="horario">
+                <option>09:00</option>
+                <option>10:30</option>
+                <option>14:00</option>
+                <option>16:00</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            Observações
+            <textarea name="observacoes" rows="4" placeholder="Motivo principal da consulta"></textarea>
+          </label>
+          <button class="primary-button full" type="submit">Confirmar agendamento</button>
+          <p class="form-message" id="scheduleMessage"></p>
+        </form>
+
+        <div class="info-panel image-panel">
+          <img src="assets/layout/agenda-terapia.png" alt="Agenda de terapia online">
+          <div class="section-heading">
+            <p class="eyebrow">Psicólogo</p>
+            <h2>Disponibilidade</h2>
+          </div>
+          <div class="availability-list">
+            <span>Segunda: 09:00 às 12:00</span>
+            <span>Terça: 14:00 às 18:00</span>
+            <span>Quinta: 09:00 às 16:00</span>
+            <span>Sexta: 10:00 às 15:00</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="agenda">
+        <div class="section-heading">
+          <p class="eyebrow">Atendimentos</p>
+          <h2>Consultas agendadas</h2>
+        </div>
+        <div class="appointments" id="appointmentsList"></div>
+      </section>
+
+      <section class="content-section split" id="mensagens">
+        <div class="info-panel">
+          <div class="section-heading">
+            <p class="eyebrow">Contato interno</p>
+            <h2>Mensagens</h2>
+          </div>
+          <div class="messages" id="messagesList"></div>
+        </div>
+        <form class="form-panel" id="messageForm">
+          <label>
+            Para
+            <select name="destinatario" id="messageRecipient"></select>
+          </label>
+          <label>
+            Mensagem
+            <textarea name="conteudo" rows="5" required>Olá, gostaria de confirmar os detalhes da consulta.</textarea>
+          </label>
+          <button class="secondary-button full" type="submit">Enviar mensagem</button>
+        </form>
+      </section>
+
+      <section class="content-section about-section" id="quem_somos">
+        <div class="section-heading">
+          <p class="eyebrow">Quem Somos</p>
+          <h2>Uma instituição dedicada ao cuidado psicológico online</h2>
+        </div>
+
+        <div class="about-layout">
+          <img src="assets/layout/psicologia-online.png" alt="Psicologia online e cuidado com a saúde mental">
+          <div>
+            <h3>Cuidado psicológico com acolhimento e tecnologia</h3>
+            <p>
+              O Portal Terapia é uma instituição digital voltada à aproximação entre pacientes e psicólogos.
+              Nossa proposta é oferecer um ambiente simples, seguro e organizado para facilitar o acesso ao
+              atendimento psicológico online.
+            </p>
+            <div class="about-values">
+              <span>Acolhimento</span>
+              <span>Ética profissional</span>
+              <span>Segurança dos dados</span>
+              <span>Acesso facilitado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-cards">
+          <article>
+            <h3>Missão</h3>
+            <p>Conectar pessoas a profissionais qualificados, tornando o cuidado com a saúde mental mais acessível.</p>
+          </article>
+          <article>
+            <h3>Visão</h3>
+            <p>Ser uma plataforma de referência para atendimento psicológico online, com experiência humana e confiável.</p>
+          </article>
+          <article>
+            <h3>Contato</h3>
+            <p>Atendimento de segunda a sexta, com suporte para pacientes e psicólogos durante o uso da plataforma.</p>
+          </article>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <h2>Converse com a gente</h2>
+        <p>Portal Terapia - atendimento psicológico online com qualidade, acessibilidade e acolhimento.</p>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -28,18 +28,19 @@ app.get("/teste-banco", async (req, res) => {
     });
 
   } catch (error) {
+    console.error("Erro no banco:", error);
 
     res.status(500).json({
       sucesso: false,
-      erro: error.message
+      erro: error.message,
+      codigo: error.code,
+      detalhe: String(error)
     });
-
   }
-
 });
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
-  });
+});

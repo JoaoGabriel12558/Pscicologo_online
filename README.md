@@ -186,6 +186,42 @@ Fluxo de publicação:
 
 Com isso, o usuário acessa o site pelo navegador e os dados passam a ser salvos no banco online.
 
+### Publicação automática do frontend
+
+O repositório já possui um workflow em:
+
+```text
+.github/workflows/pages.yml
+```
+
+Esse workflow publica automaticamente a pasta `web/` no GitHub Pages sempre que houver envio para a branch `main`.
+
+Depois do primeiro envio, confira em:
+
+```text
+Settings > Pages
+```
+
+Se necessário, selecione a opção **GitHub Actions** como origem da publicação.
+
+### Configurar API online no frontend
+
+Por padrão, o frontend tenta usar a API local:
+
+```text
+http://localhost:3000/api
+```
+
+Quando o backend estiver publicado, a URL online pode ser configurada antes do carregamento do `script.js`:
+
+```html
+<script>
+  window.PORTAL_TERAPIA_API_URL = "https://sua-api-online.com/api";
+</script>
+```
+
+Sem essa configuração, o site continua funcionando como protótipo navegável, usando dados de demonstração quando a API não estiver disponível.
+
 ## Banco de Dados
 
 O projeto usa banco de dados relacional MySQL.

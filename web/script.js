@@ -55,7 +55,7 @@ const state = {
   ]
 };
 
-const API_BASE_URL = "http://localhost:3000/api";
+const API_BASE_URL = window.PORTAL_TERAPIA_API_URL || "http://localhost:3000/api";
 
 function save() {
   localStorage.setItem("apo:user", JSON.stringify(state.user));

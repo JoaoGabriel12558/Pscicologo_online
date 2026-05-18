@@ -1,7 +1,20 @@
 # Portal Terapia - Plataforma de Atendimento Psicológico Online
 
 Projeto Integrador desenvolvido como uma Prova de Conceito (PoC) para uma plataforma web de atendimento psicológico online. A solução conecta pacientes e psicólogos em um ambiente simples, organizado e responsivo, com cadastro, autenticação, agenda de consultas, disponibilidade de profissionais e troca de mensagens.
+---
 
+## 1. 👥 Integrantes do Grupo
+
+| Nome | Função Principal |
+| :--- | :--- |
+| **Adeilson Barbosa de Lima Junior** | Análise e Modelagem |
+| **Ailene dos Santos Bezerra** | Prototipação de Interfaces |
+| **João Gabriel Felipe da Costa Melo** | Documentação Técnica |
+| **Lucas Costa Silva** | Modelagem Relacional (SQL) |
+| **Pedro Kenzo Rodrigues Tanaka** | Revisão e Integração |
+| **Waltecio Allysson Dias de Oliveira** | Validação de Requisitos |
+
+---
 ## Visão Geral
 
 O Portal Terapia foi pensado para facilitar o acesso ao atendimento psicológico remoto. Pacientes podem encontrar profissionais, realizar cadastro, fazer login e agendar consultas. Psicólogos podem acompanhar seus atendimentos e gerenciar sua disponibilidade. Administradores têm uma visão mais ampla da operação da plataforma.
